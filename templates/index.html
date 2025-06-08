@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatterBot</title>
+</head>
+<body>
+    <h1>Welcome to ChatterBot</h1>
+    <p>Type something below to chat with the bot.</p>
+    <form method="POST" action="{% url 'get_response' %}">
+        {% csrf_token %}
+        <input type="text" name="user_input" placeholder="Say something..." required>
+        <button type="submit">Send</button>
+    </form>
+
+    {% if user_input %}
+    <h2>You said:</h2>
+    <p>{{ user_input }}</p>
+    <h2>Bot says:</h2>
+    <p>{{ bot_response }}</p>
+    {% endif %}
+</body>
+</html>
+
